@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Friendly Emoji Calculator 🤖✨</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
@@ -39,11 +40,39 @@
       <label for="num2">Second number:</label>
       <input type="number" id="num2" />
 
+      <label for="constants">Insert constant:</label>
+      <select id="constants">
+        <option value="">--None--</option>
+        <option value="PI">π (Pi ≈ 3.14159)</option>
+        <option value="E">e (Euler ≈ 2.71828)</option>
+        <option value="C">c (Speed of light ≈ 299792458 m/s)</option>
+      </select>
+
       <button type="submit">🧮 Calculate</button>
       <button type="button" id="clear">❌ Clear</button>
     </form>
 
+    <label for="expression">Or enter full expression:</label>
+    <input type="text" id="expression" placeholder="e.g. 3 + 4 * 2"/>
+
     <div id="result" role="status" aria-live="polite">🎉 Ready to crunch some numbers!</div>
+
+    <h2>📜 History</h2>
+    <ul id="history"></ul>
+
+    <canvas id="graph" width="400" height="200"></canvas>
+
+    <h2>📏 Unit Converter</h2>
+    <label for="convert-value">Value:</label>
+    <input type="number" id="convert-value" />
+    <select id="unit-convert">
+      <option value="mToFt">Meters ➡ Feet</option>
+      <option value="ftToM">Feet ➡ Meters</option>
+      <option value="cToF">Celsius ➡ Fahrenheit</option>
+      <option value="fToC">Fahrenheit ➡ Celsius</option>
+    </select>
+    <button id="convert-btn">Convert</button>
+    <div id="convert-result"></div>
   </main>
 
   <footer>
