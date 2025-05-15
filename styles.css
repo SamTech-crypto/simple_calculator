@@ -64,6 +64,21 @@ button:hover {
   color: var(--error-color);
 }
 
+#history {
+  list-style-type: none;
+  padding: 0;
+}
+
+#history li {
+  margin: 4px 0;
+  font-size: 1.2rem;
+}
+
+#graph {
+  margin-top: 2rem;
+  max-width: 100%;
+}
+
 @media (max-width: 600px) {
   input, select, button {
     width: 80%;
