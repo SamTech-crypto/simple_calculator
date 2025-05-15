@@ -1,4 +1,4 @@
-import { calculate } from '../src/calculator.js';
+import { calculate } from '../public/calculator.js';
 
 test('adds numbers correctly', () => {
   expect(calculate(5, 3, "+")).toBe(8);
