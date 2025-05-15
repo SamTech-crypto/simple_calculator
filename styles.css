@@ -35,6 +35,8 @@ input, select, button {
   border-radius: 8px;
   outline: none;
   transition: all 0.2s ease;
+  width: 100%;
+  max-width: 300px;
 }
 
 input:focus, select:focus {
@@ -58,10 +60,55 @@ button:hover {
   font-weight: bold;
   color: var(--main-color);
   min-height: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#result.bounce {
+  animation: bounce 1s ease-in-out;
 }
 
 .error {
   color: var(--error-color);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  70% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+footer {
+  margin-top: 3rem;
+}
+
+footer p {
+  font-size: 1rem;
+  color: var(--text-color-dark);
+}
+
+footer label {
+  font-size: 1.2rem;
 }
 
 @media (max-width: 600px) {
