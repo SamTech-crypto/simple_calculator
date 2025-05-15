@@ -1,4 +1,4 @@
-import { calculate } from './calculator.js';
+import { calculateScientific } from './calculator.js';
 
 const form = document.getElementById('calculator-form');
 const resultEl = document.getElementById('result');
@@ -16,14 +16,16 @@ const phrases = [
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const num1 = parseFloat(document.getElementById('num1').value);
-  const num2 = parseFloat(document.getElementById('num2').value);
+  const num2 = document.getElementById('num2').value ? parseFloat(document.getElementById('num2').value) : null;
   const op = document.getElementById('op').value;
 
   try {
-    const result = calculate(num1, num2, op);
-    const emoji = { "+": "➕", "-": "➖", "*": "✖", "/": "➗" }[op];
+    const result = calculateScientific(num1, num2, op);
+    const emoji = {
+      "+": "➕", "-": "➖", "*": "✖", "/": "➗", "sqrt": "√", "^": "^", "sin": "🎵 Sine", "cos": "🎵 Cosine", "log": "🔢 Logarithm"
+    }[op];
     const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-    resultEl.innerHTML = `🎉 Result: ${num1} ${emoji} ${num2} = <strong>${result}</strong><br>${phrase}`;
+    resultEl.innerHTML = `🎉 Result: ${num1} ${emoji} ${num2 || ""} = <strong>${result}</strong><br>${phrase}`;
   } catch (err) {
     resultEl.innerHTML = `⚠️ <span class="error">${err.message}</span>`;
   }
