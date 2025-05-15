@@ -1,152 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Friendly Emoji Calculator 🤖✨</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    :root {
-      --main-color: #4c6ef5;
-      --accent-color: #22c55e;
-      --error-color: #ef4444;
-      --bg-color: #f0f4ff;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(145deg, #dbeafe, #e0f2fe);
-      margin: 0;
-      padding: 2rem;
-      text-align: center;
-      color: #333;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      color: var(--main-color);
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    input, select, button {
-      padding: 12px 16px;
-      font-size: 1.1rem;
-      margin: 8px;
-      border: 2px solid var(--main-color);
-      border-radius: 8px;
-      outline: none;
-      transition: all 0.2s ease;
-    }
-
-    input:focus, select:focus {
-      border-color: var(--accent-color);
-      background: #f0fff4;
-    }
-
-    button {
-      background: var(--main-color);
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: var(--accent-color);
-    }
-
-    #result {
-      margin-top: 2rem;
-      font-size: 1.6rem;
-      font-weight: bold;
-      color: var(--main-color);
-      min-height: 2rem;
-    }
-
-    .error {
-      color: var(--error-color);
-    }
-
-    @media (max-width: 600px) {
-      input, select, button {
-        width: 80%;
-        max-width: 300px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/src/styles.css" />
 </head>
 <body>
+  <header>
+    <h1>🔢 Friendly Emoji Calculator</h1>
+    <p>Choose an operation and enter two numbers:</p>
+  </header>
 
-  <h1>🔢 Friendly Emoji Calculator</h1>
-  <p>Choose an operation and enter two numbers:</p>
+  <main>
+    <form id="calculator-form">
+      <label for="num1">First number:</label>
+      <input type="number" id="num1" required />
 
-  <input type="number" id="num1" placeholder="First number" aria-label="First number" />
-  <select id="op" aria-label="Choose an operation">
-    <option value="+">➕ Add</option>
-    <option value="-">➖ Subtract</option>
-    <option value="*">✖ Multiply</option>
-    <option value="/">➗ Divide</option>
-  </select>
-  <input type="number" id="num2" placeholder="Second number" aria-label="Second number" />
-  <br />
-  <button onclick="calculate()">🧮 Calculate</button>
-  <button onclick="clearInputs()">❌ Clear</button>
+      <label for="op">Operation:</label>
+      <select id="op">
+        <option value="+">➕ Add</option>
+        <option value="-">➖ Subtract</option>
+        <option value="*">✖ Multiply</option>
+        <option value="/">➗ Divide</option>
+      </select>
 
-  <h2 id="result">🎉 Ready to crunch some numbers!</h2>
+      <label for="num2">Second number:</label>
+      <input type="number" id="num2" required />
 
-  <script>
-    function calculate() {
-      const num1 = parseFloat(document.getElementById('num1').value);
-      const num2 = parseFloat(document.getElementById('num2').value);
-      const op = document.getElementById('op').value;
-      const resultEl = document.getElementById('result');
-      let result, emoji = "", message = "";
+      <button type="submit">🧮 Calculate</button>
+      <button type="button" id="clear">❌ Clear</button>
+    </form>
 
-      if (isNaN(num1) || isNaN(num2)) {
-        resultEl.innerHTML = "⚠️ <span class='error'>Please enter valid numbers!</span>";
-        return;
-      }
+    <div id="result" role="status" aria-live="polite">🎉 Ready to crunch some numbers!</div>
+  </main>
 
-      if (num1 === "" || num2 === "") {
-        resultEl.innerHTML = "⚠️ <span class='error'>Please enter both numbers!</span>";
-        return;
-      }
+  <footer>
+    <label>
+      <input type="checkbox" id="dark-mode-toggle" /> 🌙 Dark Mode
+    </label>
+  </footer>
 
-      if (op === "/" && num2 === 0) {
-        resultEl.innerHTML = "🚫 <span class='error'>Cannot divide by zero!</span>";
-        return;
-      }
-
-      switch (op) {
-        case "+": result = num1 + num2; emoji = "➕"; break;
-        case "-": result = num1 - num2; emoji = "➖"; break;
-        case "*": result = num1 * num2; emoji = "✖"; break;
-        case "/": result = (num1 / num2).toFixed(3); emoji = "➗"; break;
-      }
-
-      const phrases = [
-        "💡 You're a math genius!",
-        "🚀 Quick calculation complete!",
-        "🎯 Nailed it!",
-        "📈 That adds up!",
-        "🧠 Big brain math!"
-      ];
-      const phrase = phrases[Math.floor(Math.random() * phrases.length)];
-
-      message = `🎉 Result: ${num1} ${emoji} ${num2} = <strong>${result}</strong><br>${phrase}`;
-      resultEl.innerHTML = message;
-    }
-
-    function clearInputs() {
-      document.getElementById('num1').value = "";
-      document.getElementById('num2').value = "";
-      document.getElementById('op').value = "+";
-      document.getElementById('result').innerHTML = "🎉 Ready to crunch some numbers!";
-    }
-  </script>
-
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
