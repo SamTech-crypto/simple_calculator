@@ -1,32 +1,50 @@
-# Simple Calculator Program
+# 🔢 Friendly Emoji Calculator 
 
-This is a simple Python program that asks the user to input two numbers and a mathematical operation (addition, subtraction, multiplication, or division). Based on the user's input, the program performs the operation and prints the result.
+A fun, beginner-friendly calculator that performs basic arithmetic with a friendly interface and emoji feedback.
 
-## Features
-- Addition
-- Subtraction
-- Multiplication
-- Division (handles division by zero)
+## 🚀 Quick Start
 
-## How to Use
-1. Clone or download this repository to your local machine.
-2. Open a terminal or command prompt and navigate to the directory where the `calculator.py` file is located.
-3. Run the script using Python:
+### 1. Copy the Code Below
 
-    ```bash
-    python calculator.py
-    ```
+Create a new file called `calculator.py` and paste this code into it:
 
-4. Enter two numbers when prompted.
-5. Enter a mathematical operation (+, -, *, /) when prompted.
-6. The program will display the result of the operation.
+```python
+# Friendly Emoji Calculator 🤖✨
 
-## Example
+print("🔢 Welcome to the Friendly Calculator! 🔢")
+print("You can choose an operation: + (add), - (subtract), * (multiply), / (divide)")
+print("-" * 50)
 
-If the user inputs:
-- First number: 10
-- Second number: 5
-- Operation: +
+# Get input with error handling
+try:
+    num1 = float(input("👉 Enter the first number: "))
+    num2 = float(input("👉 Enter the second number: "))
+    operation = input("🔧 Choose an operation (+, -, *, /): ").strip()
 
-The program will output:
+    # Perform calculation
+    if operation == "+":
+        result = num1 + num2
+        emoji = "➕"
+    elif operation == "-":
+        result = num1 - num2
+        emoji = "➖"
+    elif operation == "*":
+        result = num1 * num2
+        emoji = "✖️"
+    elif operation == "/":
+        if num2 == 0:
+            print("🚫 Error: You can't divide by zero!")
+            exit()
+        result = num1 / num2
+        emoji = "➗"
+    else:
+        print("❌ Oops! That's not a valid operation. Try +, -, *, or /.")
+        exit()
 
+    # Display result
+    print(f"\n🎉 Result: {num1} {emoji} {num2} = {round(result, 2)}")
+
+except ValueError:
+    print("⚠️ Please enter valid numbers only!")
+
+print("💡 Tip: You can run me again to calculate something new!")
