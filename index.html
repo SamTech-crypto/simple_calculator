@@ -9,7 +9,7 @@
 <body>
   <header>
     <h1>🔢 Friendly Emoji Calculator</h1>
-    <p>Choose an operation and enter two numbers:</p>
+    <p>Choose an operation and enter numbers:</p>
   </header>
 
   <main>
@@ -19,14 +19,25 @@
 
       <label for="op">Operation:</label>
       <select id="op">
-        <option value="+">➕ Add</option>
-        <option value="-">➖ Subtract</option>
-        <option value="*">✖ Multiply</option>
-        <option value="/">➗ Divide</option>
+        <optgroup label="Basic Operations">
+          <option value="+">➕ Add</option>
+          <option value="-">➖ Subtract</option>
+          <option value="*">✖ Multiply</option>
+          <option value="/">➗ Divide</option>
+        </optgroup>
+        <optgroup label="Scientific Operations: Advanced Calculations">
+          <option value="^">🧠 Power</option>
+          <option value="%">📏 Modulus</option>
+          <option value="sqrt">🧮 Square Root (1st only)</option>
+          <option value="log">📉 Logarithm (base 10 of 1st)</option>
+          <option value="sin">🌞 Sine (1st in degrees)</option>
+          <option value="cos">🌚 Cosine (1st in degrees)</option>
+          <option value="tan">🌗 Tangent (1st in degrees)</option>
+        </optgroup>
       </select>
 
       <label for="num2">Second number:</label>
-      <input type="number" id="num2" required />
+      <input type="number" id="num2" />
 
       <button type="submit">🧮 Calculate</button>
       <button type="button" id="clear">❌ Clear</button>
@@ -39,6 +50,7 @@
     <label>
       <input type="checkbox" id="dark-mode-toggle" /> 🌙 Dark Mode
     </label>
+    <p>created by sam with love</p>
   </footer>
 
   <script type="module" src="main.js"></script>
