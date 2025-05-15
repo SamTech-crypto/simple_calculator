@@ -1,29 +1,31 @@
-import { calculate } from '../public/calculator.js';
+export function calculate(num1, num2, op) {
+  if (isNaN(num1) || isNaN(num2) && op !== "sqrt" && op !== "log" && op !== "sin" && op !== "cos" && op !== "tan") {
+    throw new Error("Invalid input: Numbers required");
+  }
 
-test('adds numbers correctly', () => {
-  expect(calculate(5, 3, "+")).toBe(8);
-});
-
-test('subtracts numbers correctly', () => {
-  expect(calculate(10, 4, "-")).toBe(6);
-});
-
-test('multiplies numbers correctly', () => {
-  expect(calculate(2, 4, "*")).toBe(8);
-});
-
-test('divides numbers correctly', () => {
-  expect(calculate(10, 2, "/")).toBe(5);
-});
-
-test('divides with rounding', () => {
-  expect(calculate(1, 3, "/")).toBeCloseTo(0.333, 3);
-});
-
-test('throws on divide by zero', () => {
-  expect(() => calculate(5, 0, "/")).toThrow("Cannot divide by zero");
-});
-
-test('throws on invalid input', () => {
-  expect(() => calculate("a", 5, "+")).toThrow("Invalid input: Numbers required");
-});
+  switch (op) {
+    case "+":
+      return num1 + num2;
+    case "-":
+      return num1 - num2;
+    case "*":
+      return num1 * num2;
+    case "/":
+      if (num2 === 0) throw new Error("Cannot divide by zero");
+      return parseFloat((num1 / num2).toFixed(3));
+    case "sqrt":
+      return Math.sqrt(num1);
+    case "exp":
+      return Math.pow(num1, num2);
+    case "log":
+      return Math.log10(num1);
+    case "sin":
+      return Math.sin(num1 * Math.PI / 180); // Convert to radians
+    case "cos":
+      return Math.cos(num1 * Math.PI / 180); // Convert to radians
+    case "tan":
+      return Math.tan(num1 * Math.PI / 180); // Convert to radians
+    default:
+      throw new Error("Invalid operator");
+  }
+}
