@@ -83,16 +83,17 @@
   <h1>🔢 Friendly Emoji Calculator</h1>
   <p>Choose an operation and enter two numbers:</p>
 
-  <input type="number" id="num1" placeholder="First number" />
-  <select id="op">
+  <input type="number" id="num1" placeholder="First number" aria-label="First number" />
+  <select id="op" aria-label="Choose an operation">
     <option value="+">➕ Add</option>
     <option value="-">➖ Subtract</option>
     <option value="*">✖ Multiply</option>
     <option value="/">➗ Divide</option>
   </select>
-  <input type="number" id="num2" placeholder="Second number" />
+  <input type="number" id="num2" placeholder="Second number" aria-label="Second number" />
   <br />
   <button onclick="calculate()">🧮 Calculate</button>
+  <button onclick="clearInputs()">❌ Clear</button>
 
   <h2 id="result">🎉 Ready to crunch some numbers!</h2>
 
@@ -109,6 +110,11 @@
         return;
       }
 
+      if (num1 === "" || num2 === "") {
+        resultEl.innerHTML = "⚠️ <span class='error'>Please enter both numbers!</span>";
+        return;
+      }
+
       if (op === "/" && num2 === 0) {
         resultEl.innerHTML = "🚫 <span class='error'>Cannot divide by zero!</span>";
         return;
@@ -118,7 +124,7 @@
         case "+": result = num1 + num2; emoji = "➕"; break;
         case "-": result = num1 - num2; emoji = "➖"; break;
         case "*": result = num1 * num2; emoji = "✖"; break;
-        case "/": result = (num1 / num2).toFixed(2); emoji = "➗"; break;
+        case "/": result = (num1 / num2).toFixed(3); emoji = "➗"; break;
       }
 
       const phrases = [
@@ -132,6 +138,13 @@
 
       message = `🎉 Result: ${num1} ${emoji} ${num2} = <strong>${result}</strong><br>${phrase}`;
       resultEl.innerHTML = message;
+    }
+
+    function clearInputs() {
+      document.getElementById('num1').value = "";
+      document.getElementById('num2').value = "";
+      document.getElementById('op').value = "+";
+      document.getElementById('result').innerHTML = "🎉 Ready to crunch some numbers!";
     }
   </script>
 
