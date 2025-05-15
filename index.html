@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Friendly Emoji Calculator 🤖✨</title>
+  <title>🔢 Friendly Emoji Calculator</title>
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
     <h1>🔢 Friendly Emoji Calculator</h1>
-    <p>Choose an operation and enter numbers:</p>
+    <p>Choose an operation and enter two numbers:</p>
   </header>
 
   <main>
@@ -19,38 +20,62 @@
 
       <label for="op">Operation:</label>
       <select id="op">
-        <optgroup label="Basic Operations">
-          <option value="+">➕ Add</option>
-          <option value="-">➖ Subtract</option>
-          <option value="*">✖ Multiply</option>
-          <option value="/">➗ Divide</option>
-        </optgroup>
-        <optgroup label="Scientific Operations: Advanced Calculations">
-          <option value="^">🧠 Power</option>
-          <option value="%">📏 Modulus</option>
-          <option value="sqrt">🧮 Square Root (1st only)</option>
-          <option value="log">📉 Logarithm (base 10 of 1st)</option>
-          <option value="sin">🌞 Sine (1st in degrees)</option>
-          <option value="cos">🌚 Cosine (1st in degrees)</option>
-          <option value="tan">🌗 Tangent (1st in degrees)</option>
-        </optgroup>
+        <option value="+">➕ Add</option>
+        <option value="-">➖ Subtract</option>
+        <option value="*">✖ Multiply</option>
+        <option value="/">➗ Divide</option>
+        <option value="sqrt">√ Square Root</option>
+        <option value="log">log Base 10</option>
+        <option value="ln">ln</option>
+        <option value="sin">sin</option>
+        <option value="cos">cos</option>
+        <option value="tan">tan</option>
+        <option value="exp">exp</option>
+        <option value="pow">x^y</option>
       </select>
 
       <label for="num2">Second number:</label>
-      <input type="number" id="num2" />
+      <input type="number" id="num2" required />
 
       <button type="submit">🧮 Calculate</button>
       <button type="button" id="clear">❌ Clear</button>
     </form>
 
     <div id="result" role="status" aria-live="polite">🎉 Ready to crunch some numbers!</div>
+
+    <h2>History</h2>
+    <ul id="history"></ul>
+
+    <h2>Graph</h2>
+    <canvas id="graph" width="400" height="400"></canvas>
+
+    <h2>Unit Conversion</h2>
+    <label for="unit-value">Value:</label>
+    <input type="number" id="unit-value" />
+    <label for="unit-from">From:</label>
+    <select id="unit-from">
+      <option value="meters">Meters</option>
+      <option value="kilometers">Kilometers</option>
+      <option value="miles">Miles</option>
+      <option value="inches">Inches</option>
+      <option value="feet">Feet</option>
+    </select>
+    <label for="unit-to">To:</label>
+    <select id="unit-to">
+      <option value="meters">Meters</option>
+      <option value="kilometers">Kilometers</option>
+      <option value="miles">Miles</option>
+      <option value="inches">Inches</option>
+      <option value="feet">Feet</option>
+    </select>
+    <button id="convert">Convert</button>
+    <div id="conversion-result"></div>
   </main>
 
   <footer>
     <label>
       <input type="checkbox" id="dark-mode-toggle" /> 🌙 Dark Mode
     </label>
-    <p>created by sam with love</p>
   </footer>
 
   <script type="module" src="main.js"></script>
