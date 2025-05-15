@@ -1,5 +1,5 @@
 export function calculate(num1, num2, op) {
-  if (isNaN(num1) || isNaN(num2) && op !== "sqrt" && op !== "log" && op !== "sin" && op !== "cos" && op !== "tan") {
+  if (isNaN(num1) || (isNaN(num2) && op !== 'sqrt' && op !== 'log' && op !== 'sin' && op !== 'cos' && op !== 'tan')) {
     throw new Error("Invalid input: Numbers required");
   }
 
