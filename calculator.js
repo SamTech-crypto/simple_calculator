@@ -1,7 +1,5 @@
 export function calculate(num1, num2, op) {
-  if (isNaN(num1)) {
-    throw new Error("Invalid input: First number is required");
-  }
+  if (isNaN(num1)) throw new Error("Invalid input: First number is required");
 
   switch (op) {
     case "+": return num1 + num2;
@@ -27,4 +25,12 @@ export function calculate(num1, num2, op) {
 
 function degToRad(degrees) {
   return degrees * (Math.PI / 180);
+}
+
+export function evaluateExpression(expr) {
+  try {
+    return Function(`'use strict'; return (${expr})`)();
+  } catch {
+    throw new Error("Invalid expression format");
+  }
 }
