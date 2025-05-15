@@ -1,0 +1,54 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Friendly Emoji Calculator 🤖✨</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 40px; }
+    input, select, button { padding: 8px; font-size: 16px; margin: 10px; }
+  </style>
+</head>
+<body>
+  <h1>🔢 Friendly Emoji Calculator</h1>
+  <p>Choose an operation and enter two numbers:</p>
+
+  <input type="number" id="num1" placeholder="First number" />
+  <select id="op">
+    <option value="+">➕ Add</option>
+    <option value="-">➖ Subtract</option>
+    <option value="*">✖ Multiply</option>
+    <option value="/">➗ Divide</option>
+  </select>
+  <input type="number" id="num2" placeholder="Second number" />
+  <button onclick="calculate()">Calculate</button>
+
+  <h2 id="result">🎉 Result: ...</h2>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const op = document.getElementById('op').value;
+      let result;
+      let emoji = "";
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "⚠️ Please enter valid numbers!";
+      } else if (op === "/" && num2 === 0) {
+        result = "🚫 You can't divide by zero!";
+      } else {
+        switch (op) {
+          case "+": result = num1 + num2; emoji = "➕"; break;
+          case "-": result = num1 - num2; emoji = "➖"; break;
+          case "*": result = num1 * num2; emoji = "✖"; break;
+          case "/": result = (num1 / num2).toFixed(2); emoji = "➗"; break;
+        }
+        result = `🎉 Result: ${num1} ${emoji} ${num2} = ${result}`;
+      }
+
+      document.getElementById('result').innerText = result;
+    }
+  </script>
+</body>
+</html>
