@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Friendly Emoji Calculator 🤖✨</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/src/styles.css" />
 </head>
 <body>
   <header>
@@ -15,21 +15,27 @@
   <main>
     <form id="calculator-form">
       <label for="num1">First number:</label>
-      <input type="number" id="num1" required />
+      <input type="number" id="num1" required placeholder="Enter a number" />
 
       <label for="op">Operation:</label>
-      <select id="op">
+      <select id="op" aria-label="Select operation">
         <option value="+">➕ Add</option>
         <option value="-">➖ Subtract</option>
         <option value="*">✖ Multiply</option>
         <option value="/">➗ Divide</option>
+        <option value="sqrt">√ Square Root</option>
+        <option value="exp">^ Exponentiation</option>
+        <option value="log">🔢 Logarithm (base 10)</option>
+        <option value="sin">🔺 Sine</option>
+        <option value="cos">🔺 Cosine</option>
+        <option value="tan">🔺 Tangent</option>
       </select>
 
       <label for="num2">Second number:</label>
-      <input type="number" id="num2" required />
+      <input type="number" id="num2" required placeholder="Enter another number" />
 
-      <button type="submit">🧮 Calculate</button>
-      <button type="button" id="clear">❌ Clear</button>
+      <button type="submit" title="Calculate the result">🧮 Calculate</button>
+      <button type="button" id="clear" title="Clear inputs and result">❌ Clear</button>
     </form>
 
     <div id="result" role="status" aria-live="polite">🎉 Ready to crunch some numbers!</div>
@@ -39,8 +45,9 @@
     <label>
       <input type="checkbox" id="dark-mode-toggle" /> 🌙 Dark Mode
     </label>
+    <p>Created with ❤️ by <strong>Sam</strong></p>
   </footer>
 
-  <script type="module" src="main.js"></script>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
